@@ -29,13 +29,13 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ApiErrorResponse> handleNotFoundException(NotFoundException e) {
-        LogUtils.debug("handleNotFoundException");
+        LogUtils.out("handleNotFoundException");
         return ResponseEntity.status(NOT_FOUND).body(new ApiErrorResponse(NOT_FOUND.value(), e.getMessage()));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiErrorResponse> handleRequestNotValidException(MethodArgumentNotValidException e) {
-        LogUtils.debug("handleRequestNotValidException");
+        LogUtils.out("handleRequestNotValidException");
         List<String> errors = new ArrayList<>();
         e.getBindingResult()
                 .getFieldErrors().forEach(error -> errors.add(error.getField() + ": " + error.getDefaultMessage()));
@@ -49,26 +49,26 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ApiErrorResponse> handleBadCredentialsException() {
-        LogUtils.debug("handleBadCredentialsException");
+        LogUtils.out("handleBadCredentialsException");
         return ResponseEntity.status(UNAUTHORIZED)
                 .body(new ApiErrorResponse(UNAUTHORIZED.value(), "Invalid username or password"));
     }
 
     @ExceptionHandler(DuplicateException.class)
     public ResponseEntity<ApiErrorResponse> handleDuplicateException(DuplicateException e) {
-        LogUtils.debug("handleDuplicateException");
+        LogUtils.out("handleDuplicateException");
         return ResponseEntity.status(CONFLICT).body(new ApiErrorResponse(CONFLICT.value(), e.getMessage()));
     }
 
     @ExceptionHandler(InternalAuthenticationServiceException.class)
     public ResponseEntity<ApiErrorResponse> handleInternalAuthenticationServiceException(InternalAuthenticationServiceException e) {
-        LogUtils.debug("handleInternalAuthenticationServiceException");
+        LogUtils.out("handleInternalAuthenticationServiceException");
         return ResponseEntity.status(UNAUTHORIZED).body(new ApiErrorResponse(UNAUTHORIZED.value(), e.getMessage()));
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiErrorResponse> handleUnknownException(Exception e) {
-        LogUtils.debug("handleUnknownException");
+        LogUtils.out("handleUnknownException");
         return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(new ApiErrorResponse(INTERNAL_SERVER_ERROR.value(), e.getMessage()));
     }
 
