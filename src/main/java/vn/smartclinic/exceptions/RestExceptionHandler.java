@@ -4,7 +4,7 @@
  */
 package vn.smartclinic.exceptions;
 
-import com.tuanpla.utils.logging.LogUtils;
+import com.tuanpla.utils.common.LogUtils;
 import java.util.ArrayList;
 import java.util.List;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
