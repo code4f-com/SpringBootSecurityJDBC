@@ -44,7 +44,6 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         
-        
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
@@ -78,6 +77,20 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>${spring-doc.version}</version>
+        </dependency>
+        <!-- 1. Log4j2 -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+        </dependency>
+        <!-- 1.1 Nếu bạn muốn sử dụng SLF4J với Log4j2, bạn cần thêm dependency này: log4j-slf4j-impl cho phép sử dụng Log4j 2 và SLF4J cùng một lúc-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
         </dependency>
         <!--devtools-->
         <dependency>

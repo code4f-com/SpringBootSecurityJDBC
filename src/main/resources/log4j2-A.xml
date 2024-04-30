@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration status="info">
+    <Properties>
+        <Property name="logdir">${sys:catalina.base}/logs/clinic</Property>
+        <Property name="color">{FATAL=red, ERROR=red, WARN=Yellow, INFO=Green, DEBUG=Blue, TRACE=Red}</Property>
+        <!--<Property name="layout">%style{%X{projectName}}{magenta} %highlight{%d [%t] %-5p %c:%L - %m%n}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=yellow, TRACE=blue}</Property>-->
+        <Property name="layout">%style{%X{projectName}}{magenta} %d - %highlight{%-5p}${color} %c[d.%L]: %highlight{%m%n}${color}</Property>
+    </Properties>
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="${layout}" disableAnsi="false"/>
+        </Console>
+        <RollingFile name="mainFile" fileName="${logdir}/app.log" filePattern="${logdir}/archive/app-%d{yyyy-MM-dd}-%i.log.gz" immediateFlush="true" append="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{10}[d.%L]: %m%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="5MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="1024" fileIndex="min"/>
+        </RollingFile>
+        <RollingFile name="debugFile" fileName="${logdir}/debug.log" filePattern="${logdir}/archive/debug-%d{yyyy-MM-dd}-%i.log.gz" immediateFlush="true" append="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{10}[d.%L]: %m%n" />
+            <Filters>
+                <ThresholdFilter level="INFO"  onMatch="DENY"   onMismatch="ACCEPT"/>
+                <ThresholdFilter level="WARN"  onMatch="DENY"   onMismatch="ACCEPT"/>
+                <ThresholdFilter level="ERROR"  onMatch="DENY"   onMismatch="ACCEPT"/>
+                <ThresholdFilter level="FATAL"  onMatch="DENY"   onMismatch="ACCEPT"/>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <!-- <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{10}:%L - %m%n" />-->
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="5MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="1024" fileIndex="min"/>
+        </RollingFile>
+        <RollingFile name="errorFile" fileName="${logdir}/error.log" filePattern="${logdir}/archive/error-%d{yyyy-MM-dd}-%i.log.gz" immediateFlush="true" append="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %m%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="5MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="1024" fileIndex="min"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="APP_LOG" level="info" additivity="false">
+            <AppenderRef ref="mainFile"/>
+        </Logger>
+        <Logger name="DEBUG_LOG" level="debug" additivity="false">
+            <AppenderRef ref="debugFile"/>
+        </Logger>
+        <Logger name="ERROR_LOG" level="error" additivity="false">
+            <AppenderRef ref="errorFile"/>
+        </Logger>
+        <Logger name="org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading" level="off"/>
+        <Logger name="org.apache.commons.digester.Digester" level="off"/>
+        <Logger name="org.apache.tiles.definition.dao.ResolvingLocaleUrlDefinitionDAO" level="off"/>
+        <Logger name="org.apache.tiles.request.locale.PostfixedApplicationResource" level="off"/>
+        <Logger name="org.apache.tiles.impl.BasicTilesContainer" level="off"/>
+        <!--org.hibernate-->
+        <Logger name="org.hibernate" level="off"/>
+        <Logger name="org.hibernate.SQL" level="off"/>
+        <Logger name="org.hibernate.cfg" level="off"/>
+        <Logger name="org.hibernate.boot.internal.BootstrapContextImpl" level="off"/>
+        <Logger name="org.hibernate.boot.internal.ClassLoaderAccessImpl" level="off"/>
+        <Logger name="org.hibernate.boot.internal.InFlightMetadataCollectorImpl" level="off"/>
+        <Logger name="org.hibernate.dialect" level="off"/>
+        <Logger name="org.hibernate.engine" level="off"/>
+        <Logger name="org.hibernate.engine.internal" level="off"/>
+        <Logger name="org.hibernate.engine.transaction.internal.TransactionImpl" level="off"/>
+        <Logger name="org.hibernate.event.internal" level="off"/>
+        <Logger name="org.hibernate.hql.internal" level="off"/>
+        <Logger name="org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory" level="off"/>
+        <Logger name="org.hibernate.internal.SessionFactoryRegistry" level="off"/>
+        <Logger name="org.hibernate.internal.util.EntityPrinter" level="off"/>
+        <Logger name="org.hibernate.loader" level="off"/>
+        <Logger name="org.hibernate.loader.Loader" level="off"/>
+        <Logger name="org.hibernate.loader.entity.plan.EntityLoader" level="off"/>
+        <Logger name="org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter" level="off"/>
+        <Logger name="org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy" level="off"/>
+        <Logger name="org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl" level="off"/>
+        <Logger name="org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor" level="off"/>
+        <Logger name="org.hibernate.mapping.PrimaryKey" level="off"/>
+        <Logger name="org.hibernate.mapping.Table" level="off"/>
+        <Logger name="org.hibernate.persister.walking.spi.MetamodelGraphWalker" level="off"/>
+        <Logger name="org.hibernate.persister.entity.AbstractEntityPersister" level="off"/>
+        <Logger name="org.hibernate.query" level="off"/>
+        <Logger name="org.hibernate.query.spi.NamedQueryRepository" level="off"/>
+        <Logger name="org.hibernate.type.BasicTypeRegistry" level="off"/>
+        <Logger name="org.hibernate.validator.internal.engine.ValidatorFactoryConfigurationHelper" level="off"/>
+        <Logger name="vn.smartclinic.service.impl.AccountServiceImpl" level="off"/>
+        <Logger name="com.tuanpla.utils.date.DateProc" level="off"/>
+        
+        <!--HikariPool-->
+        <Logger name="com.zaxxer.hikari" level="debug" additivity="false"></Logger>
+        <Logger name="com.zaxxer.hikari.HikariConfig" level="off" additivity="true"></Logger>
+        <Logger name="com.zaxxer.hikari.pool.HikariPool" level="off" additivity="true"></Logger>
+        <Logger name="com.zaxxer.hikari.pool.PoolBase" level="off" additivity="true"></Logger>
+        <!--springframework-->
+        <Logger name="org.springframework" level="error" additivity="true"><!--<AppenderRef ref="CONSOLE"  level="debug"/>--></Logger>
+        <Logger name="_org.springframework.web" level="off" additivity="true"><!--<AppenderRef ref="CONSOLE"  level="debug"/>--></Logger>
+        <!--<Root level="info">-->
+        <Root level="DEBUG">
+            <AppenderRef ref="mainFile" level="INFO"/>
+            <!--<AppenderRef ref="debugFile" level="DEBUG"/>-->
+            <AppenderRef ref="errorFile" level="ERROR"/>
+            <AppenderRef ref="CONSOLE" level="DEBUG"/>
+        </Root>
+    </Loggers>
+</Configuration>
+<!--
+Level của Log4j2 được sắp xếp từ cao đến thấp theo thứ tự sau đây:
+    FATAL   5
+    ERROR   4
+    WARN    3
+    INFO    2
+    DEBUG   1
+    TRACE   0
+-->

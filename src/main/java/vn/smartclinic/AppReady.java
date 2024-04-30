@@ -36,7 +36,7 @@ public class AppReady implements ApplicationListener<ApplicationReadyEvent> {
     @Override
     public void onApplicationEvent(final ApplicationReadyEvent event) {
 //        LogUtils.debug("ApplicationReadyEvent:" + event.getApplicationContext().getEnvironment());
-        System.out.println("Call init funtion when app start finish here");
+        logger.info("Call init funtion when app start finish here");
     }
 
 }
