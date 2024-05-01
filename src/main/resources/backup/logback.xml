@@ -4,8 +4,7 @@
     <appender name="CAPI_LOGGER" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
-            <fileNamePattern>logs/%d{yyyyMMdd}/smartclinic.log
-            </fileNamePattern>
+            <fileNamePattern>logs/%d{yyyyMMdd}/smartclinic.log</fileNamePattern>
             <maxHistory>1000</maxHistory>
         </rollingPolicy>
         <encoder>
