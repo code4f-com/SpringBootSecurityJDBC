@@ -78,20 +78,16 @@
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>${spring-doc.version}</version>
         </dependency>
-        <!-- 1. Log4j2 -->
+        <!--LogBack-->
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
-        <!-- 1.1 Nếu bạn muốn sử dụng SLF4J với Log4j2, bạn cần thêm dependency này: log4j-slf4j-impl cho phép sử dụng Log4j 2 và SLF4J cùng một lúc-->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-        </dependency>
+        
         <!--devtools-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

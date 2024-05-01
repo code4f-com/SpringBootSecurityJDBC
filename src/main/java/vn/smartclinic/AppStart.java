@@ -1,8 +1,8 @@
 package vn.smartclinic;
 
 import com.tuanpla.utils.config.PublicConfig;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,26 +10,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AppStart {
 // https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.2-Release-Notes
 
-    private static final Logger logger = LogManager.getLogger();
-    static final String FILE_LOCK = "instance/smartclinic.be.running";
+    private static final Logger logger = LoggerFactory.getLogger(AppStart.class);
 
     public static void main(String[] args) {
         PublicConfig.PROJECT_NAME = "Spring Boot SecurityJDBC";
 //        try {
-//            if (!DFSUtils.lockFile((new File(FILE_LOCK)))) {
-//                logger.debug("File: " + file_lock + " was locked => Module cannot start");
-//                return;
-//            } else {
-//                logger.debug("File: " + file_lock + " locked => Start module");
-//            }
-//            SpringApplication.run(AppStart.class, args);
+        SpringApplication.run(AppStart.class, args);
+        logger.debug("Debug log message");
+        logger.info("Info log message");
+        logger.error("Error log message");
+        logger.warn("Warn log message");
+        logger.trace("Trace log message");
 //        } catch (Exception e) {
-//            // TODO Auto-generated catch block
+//            System.out.println("Can not start server.");
 //            logger.error(e.getLocalizedMessage());
 //            e.printStackTrace();
-//            System.out.println("Can not start server.");
 //        }
-        SpringApplication.run(AppStart.class, args);
     }
 
 }

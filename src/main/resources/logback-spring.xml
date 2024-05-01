@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Define properties -->
+    <springProperty scope="context" name="application.name" source="spring.application.name" />
+    <property name="logdir" value="./logs" />
+    <Property name="color" value="{FATAL=red, ERROR=red, WARN=Yellow, INFO=Green, DEBUG=Blue, TRACE=Red}" />
+    <!--<property name="layout" value="${application.name} %d{yyyy-MM-dd HH:mm:ss} %highlight{%-5p}${color} %c{10}[d.%L] - %m%n" />-->
+    <property name="layout" value="${application.name} %d{yyyy-MM-dd HH:mm:ss} %-5p %c{10}[d.%L] - %m%n" />
+    <!-- Define appenders -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${layout}</pattern>
+        </encoder>
+    </appender>
+    <!-- Appenders -->
+    <appender name="mainFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logdir}/app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${logdir}/archive/app.%i.log.gz</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>10</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>5MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>${layout}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logdir}/application.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logdir}/application.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${layout}</pattern>
+        </encoder>
+    </appender>
+    <!-- Define loggers -->
+    <Logger name="org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading" level="off"/>
+    <Logger name="org.apache.commons.digester.Digester" level="off"/>
+    <!--org.hibernate-->
+    <Logger name="org.hibernate" level="off"/>
+    <Logger name="org.hibernate.SQL" level="off"/>
+    <Logger name="org.hibernate.cfg" level="off"/>
+    <Logger name="vn.smartclinic.service.impl.AccountServiceImpl" level="off"/>
+    <Logger name="com.tuanpla.utils.date.DateProc" level="off"/>
+    <!--HikariPool-->
+    <Logger name="com.zaxxer.hikari" level="debug" additivity="false"></Logger>
+    <Logger name="com.zaxxer.hikari.HikariConfig" level="off" additivity="true"></Logger>
+    <Logger name="com.zaxxer.hikari.pool.HikariPool" level="off" additivity="true"></Logger>
+    <Logger name="com.zaxxer.hikari.pool.PoolBase" level="off" additivity="true"></Logger>
+    <!--springframework-->
+    <Logger name="org.springframework" level="error" additivity="true"><!--<AppenderRef ref="CONSOLE"  level="debug"/>--></Logger>
+    <Logger name="_org.springframework.web" level="off" additivity="true"><!--<AppenderRef ref="CONSOLE"  level="debug"/>--></Logger>
+    <Logger name="com.example" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </Logger>
+    <!-- Root logger -->
+    <Root level="DEBUG">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+        <appender-ref ref="mainFile" />
+    </Root>
+</configuration>

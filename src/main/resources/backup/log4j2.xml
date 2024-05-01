@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Configuration status="info">
+<Configuration status="debug">
     <Properties>
-        <Property name="logdir">${sys:catalina.base}/logs/clinic</Property>
+        <Property name="logdir">logs/clinic</Property>
         <Property name="color">{FATAL=red, ERROR=red, WARN=Yellow, INFO=Green, DEBUG=Blue, TRACE=Red}</Property>
         <!--<Property name="layout">%style{%X{projectName}}{magenta} %highlight{%d [%t] %-5p %c:%L - %m%n}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=yellow, TRACE=blue}</Property>-->
-        <Property name="layout">%style{%X{projectName}}{magenta} %d - %highlight{%-5p}${color} %c[d.%L]: %highlight{%m%n}${color}</Property>
+        <Property name="layout">%d - %highlight{%-5p}${color} %c[d.%L]: %highlight{%m%n}${color}</Property>
     </Properties>
     <Appenders>
         <Console name="CONSOLE" target="SYSTEM_OUT">
@@ -53,45 +53,15 @@
         <Logger name="ERROR_LOG" level="error" additivity="false">
             <AppenderRef ref="errorFile"/>
         </Logger>
+        
         <Logger name="org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading" level="off"/>
         <Logger name="org.apache.commons.digester.Digester" level="off"/>
-        <Logger name="org.apache.tiles.definition.dao.ResolvingLocaleUrlDefinitionDAO" level="off"/>
-        <Logger name="org.apache.tiles.request.locale.PostfixedApplicationResource" level="off"/>
-        <Logger name="org.apache.tiles.impl.BasicTilesContainer" level="off"/>
         <!--org.hibernate-->
         <Logger name="org.hibernate" level="off"/>
         <Logger name="org.hibernate.SQL" level="off"/>
         <Logger name="org.hibernate.cfg" level="off"/>
-        <Logger name="org.hibernate.boot.internal.BootstrapContextImpl" level="off"/>
-        <Logger name="org.hibernate.boot.internal.ClassLoaderAccessImpl" level="off"/>
-        <Logger name="org.hibernate.boot.internal.InFlightMetadataCollectorImpl" level="off"/>
-        <Logger name="org.hibernate.dialect" level="off"/>
-        <Logger name="org.hibernate.engine" level="off"/>
-        <Logger name="org.hibernate.engine.internal" level="off"/>
-        <Logger name="org.hibernate.engine.transaction.internal.TransactionImpl" level="off"/>
-        <Logger name="org.hibernate.event.internal" level="off"/>
-        <Logger name="org.hibernate.hql.internal" level="off"/>
-        <Logger name="org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory" level="off"/>
-        <Logger name="org.hibernate.internal.SessionFactoryRegistry" level="off"/>
-        <Logger name="org.hibernate.internal.util.EntityPrinter" level="off"/>
-        <Logger name="org.hibernate.loader" level="off"/>
-        <Logger name="org.hibernate.loader.Loader" level="off"/>
-        <Logger name="org.hibernate.loader.entity.plan.EntityLoader" level="off"/>
-        <Logger name="org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter" level="off"/>
-        <Logger name="org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy" level="off"/>
-        <Logger name="org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl" level="off"/>
-        <Logger name="org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor" level="off"/>
-        <Logger name="org.hibernate.mapping.PrimaryKey" level="off"/>
-        <Logger name="org.hibernate.mapping.Table" level="off"/>
-        <Logger name="org.hibernate.persister.walking.spi.MetamodelGraphWalker" level="off"/>
-        <Logger name="org.hibernate.persister.entity.AbstractEntityPersister" level="off"/>
-        <Logger name="org.hibernate.query" level="off"/>
-        <Logger name="org.hibernate.query.spi.NamedQueryRepository" level="off"/>
-        <Logger name="org.hibernate.type.BasicTypeRegistry" level="off"/>
-        <Logger name="org.hibernate.validator.internal.engine.ValidatorFactoryConfigurationHelper" level="off"/>
         <Logger name="vn.smartclinic.service.impl.AccountServiceImpl" level="off"/>
         <Logger name="com.tuanpla.utils.date.DateProc" level="off"/>
-        
         <!--HikariPool-->
         <Logger name="com.zaxxer.hikari" level="debug" additivity="false"></Logger>
         <Logger name="com.zaxxer.hikari.HikariConfig" level="off" additivity="true"></Logger>

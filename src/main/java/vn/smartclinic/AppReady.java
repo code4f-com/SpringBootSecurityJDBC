@@ -5,8 +5,8 @@
 package vn.smartclinic;
 
 import java.util.HashMap;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -20,10 +20,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class AppReady implements ApplicationListener<ApplicationReadyEvent> {
 
+    private static final Logger logger = LoggerFactory.getLogger(AppStart.class);
+    
     @Autowired
     private Environment env;
-    
-    private final Logger logger = LogManager.getLogger(AppReady.class);
     public static String rootDir;
     public static final HashMap<String, HashMap<String, String>> ALL_LANG = new HashMap<>();
 
