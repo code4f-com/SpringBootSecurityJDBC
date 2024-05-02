@@ -17,6 +17,7 @@ public class HighlightingCompositeConverterEx extends ForegroundCompositeConvert
 
     @Override
     protected String getForegroundColorCode(ILoggingEvent event) {
+        System.out.println("Vao day");
         Level level = event.getLevel();
         switch (level.toInt()) {
             case Level.ERROR_INT:

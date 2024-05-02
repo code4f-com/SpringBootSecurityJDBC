@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true" scan="true" scanPeriod="10 seconds">
+    <springProfile name="dev">
+        <!-- custom coloring conversion -->
+        <conversionRule conversionWord="highlightex" converterClass="vn.smartclinic.common.HighlightingCompositeConverterEx" />
+        <!-- Define properties -->
+        <springProperty scope="context" name="application.name" source="spring.application.name" />
+        <property name="logdir" value="./logs" />
+        <property name="layout" value="%d{yyyy-MM-dd HH:mm:ss} %-5level %class[d.%L]: %m%n" />
+        <!-- Define appenders -->
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <withJansi>true</withJansi>
+            <encoder>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlightex([%-5level]) %blue(%class[d.%L]:) %msg%n</pattern>
+            </encoder>
+        </appender>
+        <!-- Appenders -->
+        <appender name="mainFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${logdir}/app.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${logdir}/archive/app.%d{yy-MM-dd}.%i.log.gz</fileNamePattern>
+                <maxFileSize>1MB</maxFileSize>
+                <maxHistory>90</maxHistory>
+                <totalSizeCap>100MB</totalSizeCap>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>${layout}</pattern>
+            </encoder>
+        </appender>
+        <!-- Define loggers -->
+        <logger name="org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading" level="off"/>
+        <logger name="org.apache.commons.digester.Digester" level="off"/>
+        <!--org.hibernate-->
+        <logger name="org.hibernate" level="off"/>
+        <logger name="org.hibernate.SQL" level="off"/>
+        <logger name="org.hibernate.cfg" level="off"/>
+        <!--HikariPool-->
+        <logger name="com.zaxxer.hikari" additivity="false" level="debug">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+        <logger name="com.zaxxer.hikari.HikariConfig" additivity="false" level="off">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+        <logger name="com.zaxxer.hikari.pool.HikariPool" additivity="false" level="debug">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+        <!--springframework-->
+        <logger name="org.springframework" additivity="false" level="off">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+        <logger name="_org.springframework.web" additivity="false" level="off">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+    
+        <logger name="vn.smartclinic.service.impl.AccountServiceImpl" level="off"/>
+        <logger name="com.tuanpla.utils.date.DateProc" additivity="false" level="off"/>
+        <logger name="vn.smartclinic" additivity="false" level="debug">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="mainFile" />
+        </logger>
+        <!-- Root logger -->
+        <root level="DEBUG">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="mainFile" />
+        </root>
+    </springProfile>
+    
+    <springProfile name="pro">
+        <!-- custom coloring conversion -->
+        <conversionRule conversionWord="highlightex" converterClass="vn.smartclinic.common.HighlightingCompositeConverterEx" />
+        <!-- Define properties -->
+        <springProperty scope="context" name="application.name" source="spring.application.name" />
+        <property name="logdir" value="./logs" />
+        <property name="layout" value="%d{yyyy-MM-dd HH:mm:ss} %-5level %class[d.%L]: %m%n" />
+        <!-- Define appenders -->
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight([%-5level]) %class[d.%L]: %msg%n</pattern>
+            </encoder>
+        </appender>
+        <!-- Appenders -->
+        <appender name="mainFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${logdir}/app.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${logdir}/archive/app.%d{yy-MM-dd}.%i.log.gz</fileNamePattern>
+                <maxFileSize>10MB</maxFileSize>
+                <maxHistory>90</maxHistory>
+                <totalSizeCap>1GB</totalSizeCap>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>${layout}</pattern>
+            </encoder>
+        </appender>
+        <!-- Define loggers -->
+        <logger name="org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading" level="off"/>
+        <logger name="org.apache.commons.digester.Digester" level="off"/>
+        <!--org.hibernate-->
+        <logger name="org.hibernate" level="off"/>
+        <logger name="org.hibernate.SQL" level="off"/>
+        <logger name="org.hibernate.cfg" level="off"/>
+    
+        <!--HikariPool-->
+        <logger name="com.zaxxer.hikari" additivity="false" level="debug"/>
+        <logger name="com.zaxxer.hikari.HikariConfig" additivity="true" level="debug"/>
+        <logger name="com.zaxxer.hikari.pool.HikariPool" additivity="true" level="debug"/>
+        <logger name="com.zaxxer.hikari.pool.PoolBase" additivity="true" level="debug"/>
+        <!--springframework-->
+        <logger name="org.springframework" additivity="false" level="off">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+        <logger name="_org.springframework.web" additivity="false" level="off">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+    
+        <logger name="vn.smartclinic.service.impl.AccountServiceImpl" level="off"/>
+        <logger name="com.tuanpla.utils.date.DateProc" additivity="false" level="off"/>
+        <logger name="vn.smartclinic" additivity="false" level="debug">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="mainFile" />
+        </logger>
+        <!-- Root logger -->
+        <root level="DEBUG">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="mainFile" />
+        </root>
+    </springProfile>
+</configuration>
