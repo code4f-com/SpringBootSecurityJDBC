@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class AppReady implements ApplicationListener<ApplicationReadyEvent> {
 
     private static final Logger logger = LoggerFactory.getLogger(AppStart.class);
-    
+
     @Autowired
     private Environment env;
     public static String rootDir;
@@ -37,6 +37,7 @@ public class AppReady implements ApplicationListener<ApplicationReadyEvent> {
     public void onApplicationEvent(final ApplicationReadyEvent event) {
 //        LogUtils.debug("ApplicationReadyEvent:" + event.getApplicationContext().getEnvironment());
         logger.info("Call init funtion when app start finish here");
+
     }
 
 }
