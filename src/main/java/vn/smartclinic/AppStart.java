@@ -5,8 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
+@PropertySource("file:./config/app.properties")
 public class AppStart {
 // https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.2-Release-Notes
 
@@ -21,7 +23,6 @@ public class AppStart {
         logger.error("Error log message");
         logger.warn("Warn log message");
         logger.trace("Trace log message");
-        logger.debug("Không thay đổi khi thêm code HighlightingCompositeConverterEx không được nạp lại");
 //        } catch (Exception e) {
 //            System.out.println("Can not start server.");
 //            logger.error(e.getLocalizedMessage());

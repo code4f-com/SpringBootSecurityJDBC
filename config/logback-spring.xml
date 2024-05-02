@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true" scan="true" scanPeriod="10 seconds">
     <springProfile name="dev">
-        <!-- Define properties -->
+        <!-- Define properties co ve ok day-->
         <property name="logdir" value="./logs" />
         <property name="layout" value="%d{yyyy-MM-dd HH:mm:ss} %-5level %class[d.%L]: %m%n" />
         <!-- Define appenders -->
@@ -35,6 +35,9 @@
             <appender-ref ref="CONSOLE" />
         </logger>
         <logger name="com.zaxxer.hikari.HikariConfig" additivity="false" level="off">
+            <appender-ref ref="CONSOLE" />
+        </logger>
+        <logger name="com.zaxxer.hikari.pool.PoolBase" additivity="false" level="debug"> 
             <appender-ref ref="CONSOLE" />
         </logger>
         <logger name="com.zaxxer.hikari.pool.HikariPool" additivity="false" level="debug">
