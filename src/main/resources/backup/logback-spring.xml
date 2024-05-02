@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true" scan="true" scanPeriod="10 seconds">
-    <springProfile name="dev">
+    <!--<springProfile name="dev">-->
+        <!-- custom coloring conversion -->
+        <conversionRule conversionWord="highlightex" converterClass="vn.smartclinic.common.HighlightingCompositeConverterEx" />
         <!-- Define properties -->
         <property name="logdir" value="./logs" />
         <property name="layout" value="%d{yyyy-MM-dd HH:mm:ss} %-5level %class[d.%L]: %m%n" />
         <!-- Define appenders -->
         <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
             <encoder>
-                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %class[d.%L]: %msg%n</pattern>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlightex([%-5level]) %class[d.%L]: %msg%n</pattern>
             </encoder>
         </appender>
         <!-- Appenders -->
@@ -59,5 +61,5 @@
             <appender-ref ref="CONSOLE" />
             <appender-ref ref="mainFile" />
         </root>
-    </springProfile>
+    <!--</springProfile>-->
 </configuration>

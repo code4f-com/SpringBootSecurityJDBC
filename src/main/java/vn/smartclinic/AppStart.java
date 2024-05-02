@@ -21,6 +21,7 @@ public class AppStart {
         logger.error("Error log message");
         logger.warn("Warn log message");
         logger.trace("Trace log message");
+        logger.debug("Không thay đổi khi thêm code HighlightingCompositeConverterEx không được nạp lại");
 //        } catch (Exception e) {
 //            System.out.println("Can not start server.");
 //            logger.error(e.getLocalizedMessage());

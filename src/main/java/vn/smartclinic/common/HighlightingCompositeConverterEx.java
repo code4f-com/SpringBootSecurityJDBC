@@ -17,18 +17,19 @@ public class HighlightingCompositeConverterEx extends ForegroundCompositeConvert
 
     @Override
     protected String getForegroundColorCode(ILoggingEvent event) {
-        System.out.println("Vao day");
         Level level = event.getLevel();
-        switch (level.toInt()) {
-            case Level.ERROR_INT:
-                return ANSIConstants.BOLD + ANSIConstants.RED_FG; // same as default color scheme
-            case Level.WARN_INT:
-                return ANSIConstants.RED_FG;// same as default color scheme
-            case Level.INFO_INT:
-                return ANSIConstants.CYAN_FG; // use CYAN instead of BLUE
-            default:
-                return ANSIConstants.DEFAULT_FG;
-        }
+        return switch (level.toInt()) {
+            case Level.ERROR_INT ->
+                ANSIConstants.BOLD + ANSIConstants.RED_FG;
+            case Level.WARN_INT ->
+                ANSIConstants.RED_FG;
+            case Level.INFO_INT ->
+                ANSIConstants.CYAN_FG;
+            default ->
+                ANSIConstants.DEFAULT_FG;
+        }; // same as default color scheme
+        // same as default color scheme
+        // use CYAN instead of BLUE
     }
 
 }
